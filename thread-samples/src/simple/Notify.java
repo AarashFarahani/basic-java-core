@@ -10,6 +10,7 @@ public class Notify {
             try
             {
                 pc.produce();
+                System.out.println("This is T1");
             }
             catch(InterruptedException e)
             {
@@ -17,12 +18,11 @@ public class Notify {
             }
         });
 
-        // Create another thread object that calls
-        // pc.consume()
         Thread t2 = new Thread(()-> {
             try
             {
                 pc.produce();
+                System.out.println("This is T2");
             }
             catch(InterruptedException e)
             {
@@ -30,6 +30,7 @@ public class Notify {
             }
         });
 
+        // Create another thread object that calls pc.consume()
         Thread t3 = new Thread(()-> {
             try
             {
@@ -86,8 +87,8 @@ public class Notify {
                 Thread.sleep(2000);
                 // notifies the produce thread that it
                 // can wake up.
-                notify();
-//                notifyAll();
+//                notify();
+                notifyAll();
 
                 System.out.println("Notified");
             }
